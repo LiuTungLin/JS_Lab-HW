@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.outline{
+			width: 200px;
+			margin-left: 550px;
+		}
+
+		.GUI{
+			background-color: lightgray;
+			padding: 1px 10px 10px 10px;
+		}
+
+		.button{
+			background-color: rosybrown;
+			width: 100px;
+			height: 30px;
+		}
+
+		button:hover{
+			background-color: brown;
+		}
+
+		.Result{
+			border-style: dashed;
+		}
+
+		.result1{
+			background-color: lightpink;
+			border-style: dotted;
+		}
+
+		.result2{
+			background-color: lightyellow;
+			border-style: double;
+		}
+
+		.result3{
+			background-color: lightgreen;
+			border-style: ridge;
+		}
+
+		.bingo{
+			background-color: lightblue;
+			font-style: italic;
+			font-family:Microsoft JhengHei, fantasy, serif;
+		}
+	</style>
+</head>
+<body>
+	<div class="outline">
+		<div class="GUI">
+
+			<p><b>Guessing Game</b></p>
+
+			Your Guess(1 ~ 100)<br>
+
+			<input type="Number" id="guess">
+
+			<p><button type="button" class="button" onclick="game()">play</button></p>
+
+			<div class="Result" id="result"><b>Result</b><br></div>
+		</div>
+	</div>
+
+	<script>
+		var answer = Math.floor(Math.random()*100 +1);
+		var max = 100;
+		var min = 1;
+		var count = 0;
+
+		function game(){
+			count += 1;
+
+			var input = document.getElementById("guess").value;
+			var guess = parseInt(input);
+
+			if (guess == answer) {
+				document.getElementById("result").innerHTML += "<div class='bingo'>" + guess + "</div>";
+				document.getElementById("result").innerHTML += "Bingo! You guess " + count +" times.";
+				alert('Bingo!');
+			}
+
+			if (guess != answer) {
+				if (guess > answer) {
+					max = guess;
+				}else{
+					min = guess;
+				}
+
+				if (count % 3 == 1) {
+					document.getElementById("result").innerHTML += "<div class='result1'>" + min + "~" + max + "</div>";
+				}else if(count % 3 == 2){
+					document.getElementById("result").innerHTML += "<div class='result2'>" + min + "~" + max + "</div>";
+				}else{
+					document.getElementById("result").innerHTML += "<div class='result3'>" + min + "~" + max + "</div>";
+				}
+			}
+		}
+	</script>
+</body>
+</html>
+
